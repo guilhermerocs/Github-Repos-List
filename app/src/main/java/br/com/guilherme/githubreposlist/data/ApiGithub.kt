@@ -7,21 +7,24 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiGithub {
 
-    private var retrofit: Retrofit? = null
+    companion object {
 
-    fun connectionRetrofit(): Retrofit? {
-        if (retrofit == null)
-            retrofit = Retrofit.Builder()
-                .baseUrl(BuildConfig.SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create(mGson))
-                .build()
+        private var retrofit: Retrofit? = null
+        var apiGithub = connectionRetrofit()?.create(ApiGithubInterface::class.java)
 
-        return retrofit
+        private fun connectionRetrofit(): Retrofit? {
+            if (retrofit == null)
+                retrofit = Retrofit.Builder()
+                    .baseUrl(BuildConfig.SERVER_URL)
+                    .addConverterFactory(GsonConverterFactory.create(mGson))
+                    .build()
+
+            return retrofit
+        }
+
+        private var mGson = GsonBuilder()
+            .setLenient()
+            .create()
+
     }
-
-    private var mGson = GsonBuilder()
-        .setLenient()
-        .create()
-
-
 }
