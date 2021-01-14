@@ -1,0 +1,2 @@
+rootProject.name = "Github Repos List"
+include ':app'
