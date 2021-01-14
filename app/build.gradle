@@ -21,7 +21,7 @@ android {
         release {
             minifyEnabled true
             debuggable = false
-            buildConfigField 'String', 'API_URL', "https://api.github.com/"
+            buildConfigField "String", "SERVER_URL", "\"https://api.github.com/\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
@@ -30,7 +30,7 @@ android {
             versionNameSuffix '-DEBUG'
             minifyEnabled false
             debuggable = true
-            buildConfigField 'String', 'API_URL', "https://api.github.com/"
+            buildConfigField "String", "SERVER_URL", "\"https://api.github.com/\""
         }
     }
     compileOptions {
