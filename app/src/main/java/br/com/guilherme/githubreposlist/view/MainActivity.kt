@@ -2,41 +2,41 @@ package br.com.guilherme.githubreposlist.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import br.com.guilherme.githubreposlist.R
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var viewModelGit: GitRepositoriesViewModel
+    private var navController: NavController? = null
+    private var navDestination: NavDestination? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initViewModel()
-        observeViewModel()
+        setUpNavController()
+
     }
 
 
-    private fun initViewModel() {
-        viewModelGit = ViewModelProvider(this).get(GitRepositoriesViewModel::class.java)
-        viewModelGit.fetchRepos()
-    }
+    private fun setUpNavController() {
+        val host: NavHostFragment? = supportFragmentManager
+            .findFragmentById(R.id.nav_host) as NavHostFragment?
 
-    private fun observeViewModel() {
-        viewModelGit.apply {
-            error.observe(this@MainActivity) {
-                showError(it)
-            }
-
-            gitRepos.observe(this@MainActivity) {
-
-            }
+        navController = host?.navController ?: Navigation.findNavController(this, R.id.nav_host)
+        navController?.addOnDestinationChangedListener { _, destination, _ ->
+            onDestinationChangedListener(destination)
         }
+
     }
 
+    private fun onDestinationChangedListener(
+        destination: NavDestination,
+    ) {
+        navDestination = destination
 
-    private fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 }
