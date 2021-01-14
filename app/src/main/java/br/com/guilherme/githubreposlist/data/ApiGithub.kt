@@ -12,33 +12,31 @@ class ApiGithub {
 
     companion object {
 
-        var apiService = connectionRetrofit().create(ApiGithubInterface::class.java)
-
-
-        private fun connectionRetrofit(): Retrofit {
-            return Retrofit.Builder()
-                .baseUrl(BuildConfig.SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create(mGson))
-                .client(mClient)
-                .build()
-
-        }
-
-        private var mGson = GsonBuilder()
-            .setLenient()
-            .create()
-
-        private fun getLoggingInterceptor(): HttpLoggingInterceptor {
-            return HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.BASIC)
-        }
-
         private val mClient = OkHttpClient.Builder()
             .addInterceptor(getLoggingInterceptor())
             .connectTimeout(0, TimeUnit.SECONDS)
             .readTimeout(0, TimeUnit.SECONDS)
             .writeTimeout(0, TimeUnit.SECONDS)
             .build()
+
+
+        var apiService = connectionRetrofit().create(ApiGithubInterface::class.java)
+
+        private fun connectionRetrofit(): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(BuildConfig.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(mClient)
+                .build()
+
+        }
+
+        private fun getLoggingInterceptor(): HttpLoggingInterceptor {
+            return HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
+
+
 
     }
 }
