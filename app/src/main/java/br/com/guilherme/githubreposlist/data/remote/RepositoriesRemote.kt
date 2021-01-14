@@ -12,7 +12,6 @@ class RepositoriesRemote {
             try {
                 val repos = ApiGithub.apiService.fetchRepos()
                 emit(repos)
-
             } catch (e: Exception) {
                 emit(null)
             }
