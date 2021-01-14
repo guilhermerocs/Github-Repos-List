@@ -12,19 +12,16 @@ class ApiGithub {
 
     companion object {
 
-        private var retrofit: Retrofit? = null
-        var apiGithub = connectionRetrofit()?.create(ApiGithubInterface::class.java)
+        var apiService = connectionRetrofit().create(ApiGithubInterface::class.java)
 
 
-        private fun connectionRetrofit(): Retrofit? {
-            if (retrofit == null)
-                retrofit = Retrofit.Builder()
-                    .baseUrl(BuildConfig.SERVER_URL)
-                    .addConverterFactory(GsonConverterFactory.create(mGson))
-                    .client(mClient)
-                    .build()
+        private fun connectionRetrofit(): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(BuildConfig.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create(mGson))
+                .client(mClient)
+                .build()
 
-            return retrofit
         }
 
         private var mGson = GsonBuilder()
