@@ -19,8 +19,18 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            debuggable = false
+            buildConfigField 'String', 'API_URL', "https://api.github.com/repositories"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+            minifyEnabled false
+            debuggable = true
+            buildConfigField 'String', 'API_URL', "https://api.github.com/"
         }
     }
     compileOptions {
