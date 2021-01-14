@@ -1,13 +1,11 @@
 package br.com.guilherme.githubreposlist.data
 
-import okhttp3.ResponseBody
+import br.com.guilherme.githubreposlist.data.model.entity.GitRepository
 import retrofit2.http.GET
-
 
 interface ApiGithubInterface {
 
-
     @GET("repositories")
-    suspend fun fetchRepos(): ResponseBody?
+    suspend fun fetchRepos(): List<GitRepository>?
 
 }

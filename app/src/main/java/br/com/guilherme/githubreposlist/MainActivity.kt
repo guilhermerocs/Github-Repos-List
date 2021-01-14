@@ -2,18 +2,41 @@ package br.com.guilherme.githubreposlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import br.com.guilherme.githubreposlist.view.RepositoriesViewModel
+import br.com.guilherme.githubreposlist.view.GitRepositoriesViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var viewModel: RepositoriesViewModel
+    lateinit var viewModelGit: GitRepositoriesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel = ViewModelProvider(this).get(RepositoriesViewModel::class.java)
+        initViewModel()
+        observeViewModel()
+    }
 
-        viewModel.fetchRepos()
+
+    private fun initViewModel() {
+        viewModelGit = ViewModelProvider(this).get(GitRepositoriesViewModel::class.java)
+        viewModelGit.fetchRepos()
+    }
+
+    private fun observeViewModel() {
+        viewModelGit.apply {
+            error.observe(this@MainActivity) {
+                showError(it)
+            }
+
+            gitRepos.observe(this@MainActivity) {
+
+            }
+        }
+    }
+
+
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
