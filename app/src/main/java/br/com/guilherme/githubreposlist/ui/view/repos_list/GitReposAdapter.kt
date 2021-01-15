@@ -7,7 +7,8 @@ import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.ItemGitReposBinding
 
 class GitReposAdapter(
-    var gitRepos: ArrayList<GitRepository>
+    var gitRepos: ArrayList<GitRepository>,
+    var click: (gitRepo: GitRepository) -> Unit
 ) : RecyclerView.Adapter<GitReposAdapter.ItemViewHolder>() {
 
 
@@ -47,6 +48,7 @@ class GitReposAdapter(
             with(view) {
                 repoName.text = gitRepository.full_name
                 repoUsername.text = gitRepository.owner.login
+                repoCell.setOnClickListener { click.invoke(gitRepository) }
             }
         }
     }

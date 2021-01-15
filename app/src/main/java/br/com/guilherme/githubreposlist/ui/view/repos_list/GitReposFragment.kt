@@ -14,7 +14,6 @@ import br.com.guilherme.githubreposlist.R
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.FragmentGitReposBinding
 import br.com.guilherme.githubreposlist.di.DaggerComponent
-import br.com.guilherme.githubreposlist.ui.view.repos_detail.GitRepoDetailFragment
 import br.com.guilherme.githubreposlist.ui.viewmodel.GitRepositoriesViewModel
 import javax.inject.Inject
 
@@ -58,7 +57,7 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
     private fun setUpRecycler() {
         binding.reposRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            reposAdapter = GitReposAdapter(arrayListOf())
+            reposAdapter = GitReposAdapter(arrayListOf(), ::navigateToDetail)
             adapter = reposAdapter
         }
     }
@@ -77,7 +76,6 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
 
             gitRepos.observe(viewLifecycleOwner) {
                 fillGitRepos(it)
-                navigateToDetail(it[0])
             }
         }
     }
