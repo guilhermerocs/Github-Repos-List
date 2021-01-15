@@ -11,9 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.guilherme.githubreposlist.R
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.FragmentGitReposBinding
+import br.com.guilherme.githubreposlist.di.DaggerComponent
 import br.com.guilherme.githubreposlist.ui.viewmodel.GitRepositoriesViewModel
+import javax.inject.Inject
 
 class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     lateinit var viewModelGit: GitRepositoriesViewModel
 
@@ -35,6 +40,7 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        DaggerComponent.create().inject(this)
         setUpRecycler()
         initViewModel()
         observeViewModel()
@@ -55,7 +61,8 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
     }
 
     private fun initViewModel() {
-        viewModelGit = ViewModelProvider(this).get(GitRepositoriesViewModel::class.java)
+        viewModelGit =
+            ViewModelProvider(this, viewModelFactory)[GitRepositoriesViewModel::class.java]
         viewModelGit.fetchRepos()
     }
 
