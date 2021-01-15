@@ -1,7 +1,7 @@
-package br.com.guilherme.githubreposlist.data.remote
+package br.com.guilherme.githubreposlist.data.source.remote
 
 import br.com.guilherme.githubreposlist.data.ApiGithub
-import br.com.guilherme.githubreposlist.data.model.entity.GitRepository
+import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

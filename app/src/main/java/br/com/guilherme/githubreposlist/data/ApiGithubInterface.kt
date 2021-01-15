@@ -1,6 +1,6 @@
 package br.com.guilherme.githubreposlist.data
 
-import br.com.guilherme.githubreposlist.data.model.entity.GitRepository
+import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import retrofit2.http.GET
 
 interface ApiGithubInterface {

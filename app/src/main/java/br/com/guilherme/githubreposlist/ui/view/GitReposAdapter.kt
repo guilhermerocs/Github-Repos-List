@@ -3,7 +3,7 @@ package br.com.guilherme.githubreposlist.ui.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.guilherme.githubreposlist.data.model.entity.GitRepository
+import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.ItemGitReposBinding
 
 class GitReposAdapter(

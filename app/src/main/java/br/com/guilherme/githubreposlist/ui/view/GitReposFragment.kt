@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.guilherme.githubreposlist.R
-import br.com.guilherme.githubreposlist.data.model.entity.GitRepository
+import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.FragmentGitReposBinding
 import br.com.guilherme.githubreposlist.ui.viewmodel.GitRepositoriesViewModel
 

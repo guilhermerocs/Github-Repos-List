@@ -1,4 +1,4 @@
-package br.com.guilherme.githubreposlist.data.model.entity
+package br.com.guilherme.githubreposlist.domain.model.entity
 
 import com.google.gson.annotations.SerializedName
 
