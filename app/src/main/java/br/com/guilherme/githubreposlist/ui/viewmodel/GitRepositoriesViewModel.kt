@@ -5,28 +5,35 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
-import br.com.guilherme.githubreposlist.data.source.remote.GitRepositoriesRemote
+import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCase
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class GitRepositoriesViewModel : ViewModel() {
+class GitRepositoriesViewModel @Inject constructor(
+    private val gitReposUseCase: FetchReposUseCase
+) : ViewModel() {
 
-    private val repositoriesRemote = GitRepositoriesRemote()
 
     val gitRepos = MutableLiveData<List<GitRepository>>()
-    val error = MutableLiveData<String>()
+    var error = MutableLiveData<String>()
+    var loading = MutableLiveData(false)
+    private val coroutinesContext = IO
 
     fun fetchRepos() {
-        viewModelScope.launch(IO) {
-            repositoriesRemote.fetchPublicRepositories().collect {
-                if (it != null)
-                    gitRepos.postValue(it)
-                else
-                    error.postValue("Ocorreu um erro inesperado, tente novamente mais tarde")
-            }
+        loading.value = true
+        viewModelScope.launch(coroutinesContext) {
+            gitReposUseCase.execute()
+                .catch { e ->
+                    error.postValue(e.message)
+                }
+                .collect { repos ->
+                    gitRepos.postValue(repos)
+                }
         }
     }
-
 }
