@@ -1,6 +1,7 @@
 package br.com.guilherme.githubreposlist.di
 
-import br.com.guilherme.githubreposlist.ui.view.GitReposFragment
+import br.com.guilherme.githubreposlist.ui.view.repos_detail.GitRepoDetailFragment
+import br.com.guilherme.githubreposlist.ui.view.repos_list.GitReposFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,4 +10,6 @@ import javax.inject.Singleton
 interface Component {
 
     fun inject(gitReposFragment: GitReposFragment)
+
+    fun inject(gitRepoDetailFragment: GitRepoDetailFragment)
 }

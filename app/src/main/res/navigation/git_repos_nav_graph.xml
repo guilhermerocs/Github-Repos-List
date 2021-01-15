@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/gitReposFragment"
-        android:name="br.com.guilherme.githubreposlist.ui.view.GitReposFragment"
+        android:name="br.com.guilherme.githubreposlist.ui.view.repos_list.GitReposFragment"
         android:label="GitReposFragment" />
 </navigation>

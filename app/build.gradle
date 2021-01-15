@@ -79,6 +79,9 @@ dependencies {
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
