@@ -1,4 +1,4 @@
-package br.com.guilherme.githubreposlist.view
+package br.com.guilherme.githubreposlist.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.guilherme.githubreposlist.R
 import br.com.guilherme.githubreposlist.data.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.FragmentGitReposBinding
+import br.com.guilherme.githubreposlist.ui.viewmodel.GitRepositoriesViewModel
 
 class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
 

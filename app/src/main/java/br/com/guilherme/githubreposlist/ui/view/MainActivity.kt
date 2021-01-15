@@ -1,4 +1,4 @@
-package br.com.guilherme.githubreposlist.view
+package br.com.guilherme.githubreposlist.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
