@@ -90,6 +90,10 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
             gitRepos.observe(viewLifecycleOwner) {
                 fillGitRepos(it)
             }
+
+            loading.observe(viewLifecycleOwner) {
+                manageProgress(it)
+            }
         }
     }
 
@@ -129,6 +133,16 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
             reposAdapter?.addAll(filtered as ArrayList<GitRepository>)
         } else {
             reposAdapter?.addAll(reposGeneral as ArrayList<GitRepository>)
+        }
+    }
+
+    private fun manageProgress(loading: Boolean) {
+        if (loading) {
+            binding.reposRecycler.visibility = View.GONE
+            binding.progress.visibility = View.VISIBLE
+        } else {
+            binding.reposRecycler.visibility = View.VISIBLE
+            binding.progress.visibility = View.GONE
         }
     }
 

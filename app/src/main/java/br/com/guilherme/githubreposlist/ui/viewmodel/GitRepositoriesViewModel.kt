@@ -25,14 +25,16 @@ class GitRepositoriesViewModel @Inject constructor(
     private val coroutinesContext = IO
 
     fun fetchRepos() {
-        loading.value = true
+        loading.postValue(true)
         viewModelScope.launch(coroutinesContext) {
             gitReposUseCase.execute()
                 .catch { e ->
                     error.postValue(e.message)
+                    loading.postValue(false)
                 }
                 .collect { repos ->
                     gitRepos.postValue(repos)
+                    loading.postValue(false)
                 }
         }
     }
