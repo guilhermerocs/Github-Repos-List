@@ -1,6 +1,7 @@
 package br.com.guilherme.githubreposlist.di
 
 import br.com.guilherme.githubreposlist.data.repository.GitReposRepositoryImp
+import br.com.guilherme.githubreposlist.data.source.remote.GitRepositoriesRemote
 import br.com.guilherme.githubreposlist.domain.repository.GitReposRepository
 import dagger.Module
 import dagger.Provides
@@ -10,7 +11,12 @@ class Module {
 
     @Provides
     fun providesGitReposRepository(): GitReposRepository {
-        return GitReposRepositoryImp()
+        return GitReposRepositoryImp(providesGitReposRemote())
+    }
+
+    @Provides
+    fun providesGitReposRemote(): GitRepositoriesRemote {
+        return GitRepositoriesRemote()
     }
 
 }

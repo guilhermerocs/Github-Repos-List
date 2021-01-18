@@ -4,10 +4,11 @@ import br.com.guilherme.githubreposlist.data.source.remote.GitRepositoriesRemote
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.domain.repository.GitReposRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class GitReposRepositoryImp : GitReposRepository {
-
-    private val remote = GitRepositoriesRemote()
+class GitReposRepositoryImp @Inject constructor(
+    private val remote: GitRepositoriesRemote
+) : GitReposRepository {
 
     override suspend fun fetchRepos(): Flow<List<GitRepository>?> {
         return remote.fetchPublicRepositories()
