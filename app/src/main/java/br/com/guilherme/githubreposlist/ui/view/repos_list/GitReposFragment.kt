@@ -141,9 +141,9 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
         if (query != null && query.isNotEmpty()) {
             val filtered = reposAdapter?.gitRepos?.filter { it.full_name.contains(query) }
             reposAdapter?.addAll(filtered as ArrayList<GitRepository>)
-        } else {
+        } else
             resetAdapter()
-        }
+
     }
 
     private fun resetAdapter() {
