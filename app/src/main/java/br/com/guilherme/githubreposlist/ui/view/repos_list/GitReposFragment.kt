@@ -1,9 +1,8 @@
 package br.com.guilherme.githubreposlist.ui.view.repos_list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -17,7 +16,9 @@ import br.com.guilherme.githubreposlist.di.DaggerComponent
 import br.com.guilherme.githubreposlist.ui.viewmodel.GitRepositoriesViewModel
 import javax.inject.Inject
 
-class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
+class GitReposFragment : Fragment(R.layout.fragment_git_repos),
+    SearchView.OnQueryTextListener,
+    SearchView.OnCloseListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -29,12 +30,17 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
 
     private var reposAdapter: GitReposAdapter? = null
 
+    private var searchView: SearchView? = null
+
+    private var reposGeneral: List<GitRepository>? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         _binding = FragmentGitReposBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -52,6 +58,13 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+        searchView = menu.findItem(R.id.search).actionView as? SearchView
+        searchView?.setOnQueryTextListener(this)
     }
 
     private fun setUpRecycler() {
@@ -81,6 +94,7 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
     }
 
     private fun fillGitRepos(repos: List<GitRepository>) {
+        reposGeneral = repos
         reposAdapter?.addAll(repos as ArrayList<GitRepository>)
     }
 
@@ -92,6 +106,30 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
     private fun navigateToDetail(gitRepository: GitRepository) {
         val bundle = bundleOf("repo" to gitRepository)
         findNavController().navigate(R.id.gitRepoDetailFragment, bundle)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        filter(query)
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        filter(newText)
+        return false
+    }
+
+    override fun onClose(): Boolean {
+        reposAdapter?.addAll(reposGeneral as ArrayList<GitRepository>)
+        return false
+    }
+
+    private fun filter(query: String?) {
+        if (query != null && query.isNotEmpty()) {
+            val filtered = reposAdapter?.gitRepos?.filter { it.full_name.contains(query) }
+            reposAdapter?.addAll(filtered as ArrayList<GitRepository>)
+        } else {
+            reposAdapter?.addAll(reposGeneral as ArrayList<GitRepository>)
+        }
     }
 
 }
