@@ -106,6 +106,16 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun manageProgress(loading: Boolean) {
+        if (loading) {
+            binding.reposRecycler.visibility = View.GONE
+            binding.progress.visibility = View.VISIBLE
+        } else {
+            binding.reposRecycler.visibility = View.VISIBLE
+            binding.progress.visibility = View.GONE
+        }
+    }
+
 
     private fun navigateToDetail(gitRepository: GitRepository) {
         val bundle = bundleOf("repo" to gitRepository)
@@ -123,7 +133,7 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
     }
 
     override fun onClose(): Boolean {
-        reposAdapter?.addAll(reposGeneral as ArrayList<GitRepository>)
+        resetAdapter()
         return false
     }
 
@@ -132,18 +142,12 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
             val filtered = reposAdapter?.gitRepos?.filter { it.full_name.contains(query) }
             reposAdapter?.addAll(filtered as ArrayList<GitRepository>)
         } else {
-            reposAdapter?.addAll(reposGeneral as ArrayList<GitRepository>)
+            resetAdapter()
         }
     }
 
-    private fun manageProgress(loading: Boolean) {
-        if (loading) {
-            binding.reposRecycler.visibility = View.GONE
-            binding.progress.visibility = View.VISIBLE
-        } else {
-            binding.reposRecycler.visibility = View.VISIBLE
-            binding.progress.visibility = View.GONE
-        }
+    private fun resetAdapter() {
+        reposAdapter?.addAll(reposGeneral as ArrayList<GitRepository>)
     }
 
 }
