@@ -9,7 +9,7 @@ import dagger.Provides
 class Module {
 
     @Provides
-    fun providesLoginRepository(): GitReposRepository {
+    fun providesGitReposRepository(): GitReposRepository {
         return GitReposRepositoryImp()
     }
 

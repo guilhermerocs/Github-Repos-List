@@ -1,12 +1,14 @@
-package br.com.guilherme.githubreposlist.ui.view
+package br.com.guilherme.githubreposlist.ui.view.repos_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.guilherme.githubreposlist.R
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
@@ -55,7 +57,7 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
     private fun setUpRecycler() {
         binding.reposRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            reposAdapter = GitReposAdapter(arrayListOf())
+            reposAdapter = GitReposAdapter(arrayListOf(), ::navigateToDetail)
             adapter = reposAdapter
         }
     }
@@ -84,6 +86,12 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos) {
 
     private fun showError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+
+    private fun navigateToDetail(gitRepository: GitRepository) {
+        val bundle = bundleOf("repo" to gitRepository)
+        findNavController().navigate(R.id.gitRepoDetailFragment, bundle)
     }
 
 }
