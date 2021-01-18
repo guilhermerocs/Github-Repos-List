@@ -1,5 +1,5 @@
 
- ## 👨🏻‍💻 Author
+ ## 👨🏻‍💻 Autor
 - Created by [Guilherme Rocha](https://www.linkedin.com/in/guilherme-rocha-396458a6/)
 - Guilherme Rocha, guilhermerocs@gmail.com
 
