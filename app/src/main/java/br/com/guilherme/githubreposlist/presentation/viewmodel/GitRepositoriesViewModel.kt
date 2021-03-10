@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCase
+import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCaseI
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 
 class GitRepositoriesViewModel @Inject constructor(
-    private val gitReposUseCase: FetchReposUseCase
+    private val gitReposUseCase: FetchReposUseCaseI
 ) : ViewModel() {
 
 
@@ -29,12 +30,12 @@ class GitRepositoriesViewModel @Inject constructor(
         viewModelScope.launch(coroutinesContext) {
             gitReposUseCase.execute()
                 .catch { e ->
-                    error.postValue(e.message)
                     loading.postValue(false)
+                    error.postValue(e.message)
                 }
                 .collect { repos ->
-                    gitRepos.postValue(repos)
                     loading.postValue(false)
+                    gitRepos.postValue(repos)
                 }
         }
     }
