@@ -3,9 +3,6 @@ package br.com.guilherme.githubreposlist.presentation.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
-import br.com.guilherme.githubreposlist.domain.model.entity.Owner
-import br.com.guilherme.githubreposlist.domain.repository.GitReposRepository
-import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCase
 import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCaseI
 import br.com.guilherme.githubreposlist.test_utils.generateReposList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
