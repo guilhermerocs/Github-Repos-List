@@ -44,8 +44,8 @@ class GitRepoDetailFragment : Fragment(R.layout.fragment_git_repo_detail) {
             repo?.let {
                 with(it) {
                     setUpLayout(
-                        owner.avatar_url,
-                        owner.login,
+                        owner?.avatar_url,
+                        owner?.login,
                         name,
                         description
                     )

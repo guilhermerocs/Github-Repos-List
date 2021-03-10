@@ -47,7 +47,7 @@ class GitReposAdapter(
         ) {
             with(view) {
                 repoName.text = gitRepository.full_name
-                repoUsername.text = gitRepository.owner.login
+                repoUsername.text = gitRepository.owner?.login
                 repoCell.setOnClickListener { click.invoke(gitRepository) }
             }
         }
