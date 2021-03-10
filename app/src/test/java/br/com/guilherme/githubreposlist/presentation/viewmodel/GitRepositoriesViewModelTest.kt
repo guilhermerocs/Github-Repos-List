@@ -99,16 +99,7 @@ class GitRepositoriesViewModelTest {
 
     @Test
     fun shouldCallSuccessCorrectly() {
-        val fakeResult =
-            listOf(
-                GitRepository(
-                    1,
-                    "",
-                    "",
-                    Owner("", 1, ""),
-                    ""
-                )
-            )
+        val fakeResult = generateReposList()
 
         val fakeFlow = flow {
             emit(fakeResult)
@@ -126,6 +117,19 @@ class GitRepositoriesViewModelTest {
         }
 
 
+    }
+
+
+    private fun generateReposList(): List<GitRepository> {
+        return listOf(
+            GitRepository(
+                1,
+                "",
+                "",
+                Owner("", 1, ""),
+                ""
+            )
+        )
     }
 
 }

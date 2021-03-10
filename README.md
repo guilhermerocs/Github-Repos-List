@@ -13,7 +13,7 @@
 ## Bibliotecas usadas
 - [Retrofit](https://square.github.io/retrofit/), usado para comunicação Http.
 - [GSON](https://github.com/google/gson), usado para serializar o Json retornado pela API.
-- [Dagger](https://github.com/google/dagger), usado para Injeção de dependência. 
+- [Koin](https://insert-koin.io/), usado para Injeção de dependência. 
 - [Picasso](https://github.com/square/picasso), usado para fazer o load de imagens.
 - [Lottie](https://github.com/airbnb/lottie-android), usado para carregar animações como a de loading.
 
