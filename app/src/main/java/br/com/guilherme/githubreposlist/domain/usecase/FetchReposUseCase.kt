@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class FetchReposUseCase @Inject constructor(
     private val repository: GitReposRepository
-) {
+) : FetchReposUseCaseI {
 
-    suspend fun execute(): Flow<List<GitRepository>?> {
+    override suspend fun execute(): Flow<List<GitRepository>?> {
         return repository.fetchRepos()
     }
 
