@@ -13,8 +13,7 @@ class GitRepositoriesRemote {
                 val repos = ApiGithub.apiService.fetchRepos()
                 emit(repos)
             } catch (e: Exception) {
-                e.printStackTrace()
-                emit(null)
+                throw Exception(e.message)
             }
         }
     }
