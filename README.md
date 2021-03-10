@@ -12,10 +12,20 @@
 
 ## Bibliotecas usadas
 - [Retrofit](https://square.github.io/retrofit/), usado para comunicação Http.
-- [GSON](https://github.com/google/gson), usado para serializar o Json retornado pela API.
-- [Dagger](https://github.com/google/dagger), usado para Injeção de dependência. 
+- [MOSHI](https://github.com/square/moshi), usado para serializar o Json retornado pela API.
+- [Koin](https://insert-koin.io/), usado para Injeção de dependência. 
 - [Picasso](https://github.com/square/picasso), usado para fazer o load de imagens.
 - [Lottie](https://github.com/airbnb/lottie-android), usado para carregar animações como a de loading.
+- [Mockito](https://site.mockito.org/), usado nos testes unitários.
+
+
+## Arquitetura utilizada
+- Neste projeto foi utilizado Clean Architecture juntamente com o MVVM. 
+ 1. O pacote 'data' contém o repositório do sistema. Nele são feitas as chamadas para a API. Além disso, este pacote contém a configuração do 'RETROFIT'.
+ 1. O pacote 'domain' contém os 'usecases', modelos de retorno da API e a interface externa do 'Repository'.
+ 1. O pacote 'presentation' "contém a parte MVVM" do projeto. Temos os Fragments e Activity e suas respectivas ViewModels.
+ 1. Por fim, o pacote 'di' contém a configuração do 'Koin' para injeção de dependência.
+
 
 
 ## Passos para executar o projeto
