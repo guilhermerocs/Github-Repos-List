@@ -1,4 +1,4 @@
-package br.com.guilherme.githubreposlist.ui.viewmodel
+package br.com.guilherme.githubreposlist.presentation.viewmodel
 
 
 import androidx.lifecycle.MutableLiveData

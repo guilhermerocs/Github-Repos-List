@@ -1,4 +1,4 @@
-package br.com.guilherme.githubreposlist.ui.view.repos_list
+package br.com.guilherme.githubreposlist.presentation.view.repos_list
 
 import android.os.Bundle
 import android.view.*
@@ -13,7 +13,7 @@ import br.com.guilherme.githubreposlist.R
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.FragmentGitReposBinding
 import br.com.guilherme.githubreposlist.di.DaggerComponent
-import br.com.guilherme.githubreposlist.ui.viewmodel.GitRepositoriesViewModel
+import br.com.guilherme.githubreposlist.presentation.viewmodel.GitRepositoriesViewModel
 import javax.inject.Inject
 
 class GitReposFragment : Fragment(R.layout.fragment_git_repos),

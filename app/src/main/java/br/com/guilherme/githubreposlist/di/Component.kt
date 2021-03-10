@@ -1,7 +1,7 @@
 package br.com.guilherme.githubreposlist.di
 
-import br.com.guilherme.githubreposlist.ui.view.repos_detail.GitRepoDetailFragment
-import br.com.guilherme.githubreposlist.ui.view.repos_list.GitReposFragment
+import br.com.guilherme.githubreposlist.presentation.view.repos_detail.GitRepoDetailFragment
+import br.com.guilherme.githubreposlist.presentation.view.repos_list.GitReposFragment
 import dagger.Component
 import javax.inject.Singleton
 

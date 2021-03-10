@@ -2,7 +2,7 @@ package br.com.guilherme.githubreposlist.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.guilherme.githubreposlist.ui.viewmodel.GitRepositoriesViewModel
+import br.com.guilherme.githubreposlist.presentation.viewmodel.GitRepositoriesViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module

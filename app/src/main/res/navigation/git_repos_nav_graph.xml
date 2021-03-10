@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/gitReposFragment"
-        android:name="br.com.guilherme.githubreposlist.ui.view.repos_list.GitReposFragment"
+        android:name="br.com.guilherme.githubreposlist.presentation.view.repos_list.GitReposFragment"
         android:label="GitReposFragment">
 
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/gitRepoDetailFragment"
-        android:name="br.com.guilherme.githubreposlist.ui.view.repos_detail.GitRepoDetailFragment"
+        android:name="br.com.guilherme.githubreposlist.presentation.view.repos_detail.GitRepoDetailFragment"
         android:label="GitRepoDetailFragment">
 
     </fragment>

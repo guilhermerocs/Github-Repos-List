@@ -1,4 +1,4 @@
-package br.com.guilherme.githubreposlist.ui.view.repos_list
+package br.com.guilherme.githubreposlist.presentation.view.repos_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
