@@ -4,7 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.domain.model.entity.Owner
+import br.com.guilherme.githubreposlist.domain.repository.GitReposRepository
 import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCase
+import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCaseI
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -27,7 +29,7 @@ class GitRepositoriesViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var gitReposUseCase: FetchReposUseCase
+    lateinit var gitReposUseCase: FetchReposUseCaseI
 
     @Mock
     lateinit var reposObserver: Observer<List<GitRepository>>
@@ -47,7 +49,7 @@ class GitRepositoriesViewModelTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
 
-        sut = GitRepositoriesViewModel(gitReposUseCase)
+        sut = GitRepositoriesViewModel(coroutineDispatcher, gitReposUseCase)
         sut.error.observeForever(errorObserver)
         sut.gitRepos.observeForever(reposObserver)
         sut.loading.observeForever(loadingObserver)
@@ -114,13 +116,15 @@ class GitRepositoriesViewModelTest {
 
         coroutineDispatcher.runBlockingTest {
             Mockito.`when`(gitReposUseCase.execute()).thenReturn(fakeFlow)
+
+            sut.fetchRepos()
+
+            Mockito.verify(loadingObserver).onChanged(true)
+            Mockito.verify(loadingObserver).onChanged(false)
+            Mockito.verify(reposObserver).onChanged(fakeResult)
+
         }
 
-        sut.fetchRepos()
-
-        Mockito.verify(loadingObserver).onChanged(true)
-        Mockito.verify(loadingObserver).onChanged(false)
-        Mockito.verify(reposObserver).onChanged(fakeResult)
 
     }
 
