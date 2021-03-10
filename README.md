@@ -19,7 +19,7 @@
 - [Mockito](https://site.mockito.org/), usado nos testes unitários.
 
 
-##Arquitetura utilizada
+## Arquitetura utilizada
 # Neste projeto foi utilizado Clean Architecture juntamente com o MVVM. 
 - O pacote 'data' contém o repositório do sistema. Nele são feitas as chamadas para a API. Além disso, este pacote contém a configuração do 'RETROFIT'.
 - O pacote 'domain' contém os 'usecases', modelos de retorno da API e a interface externa do 'Repository'.
