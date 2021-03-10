@@ -1,5 +1,6 @@
 package br.com.guilherme.githubreposlist.di
 
+import br.com.guilherme.githubreposlist.data.ApiGithub
 import br.com.guilherme.githubreposlist.data.repository.GitReposRepositoryImp
 import br.com.guilherme.githubreposlist.data.source.remote.GitRepositoriesRemote
 import br.com.guilherme.githubreposlist.domain.repository.GitReposRepository
@@ -14,7 +15,7 @@ import org.koin.dsl.module
 val module = module {
 
 
-    single { GitRepositoriesRemote() }
+    single { GitRepositoriesRemote(ApiGithub.apiService) }
 
     single<GitReposRepository> { GitReposRepositoryImp(get()) }
 
