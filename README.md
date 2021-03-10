@@ -19,6 +19,15 @@
 - [Mockito](https://site.mockito.org/), usado nos testes unitários.
 
 
+##Arquitetura utilizada
+# Neste projeto foi utilizado Clean Architecture juntamente com o MVVM. 
+- O pacote 'data' contém o repositório do sistema. Nele são feitas as chamadas para a API. Além disso, este pacote contém a configuração do 'RETROFIT'.
+- O pacote 'domain' contém os 'usecases', modelos de retorno da API e a interface externa do 'Repository'.
+- O pacote 'presentation' "contém a parte MVVM" do projeto. Temos os Fragments e Activity e suas respectivas ViewModels.
+- Por fim, o pacote 'di' contém a configuração do 'Koin' para injeção de dependência.
+
+
+
 ## Passos para executar o projeto
 - Clone este repositório
 - Faça um sync do Gradle
