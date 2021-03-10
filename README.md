@@ -12,10 +12,11 @@
 
 ## Bibliotecas usadas
 - [Retrofit](https://square.github.io/retrofit/), usado para comunicação Http.
-- [GSON](https://github.com/google/gson), usado para serializar o Json retornado pela API.
+- [MOSHI](https://github.com/square/moshi), usado para serializar o Json retornado pela API.
 - [Koin](https://insert-koin.io/), usado para Injeção de dependência. 
 - [Picasso](https://github.com/square/picasso), usado para fazer o load de imagens.
 - [Lottie](https://github.com/airbnb/lottie-android), usado para carregar animações como a de loading.
+- [Mockito](https://site.mockito.org/), usado nos testes unitários.
 
 
 ## Passos para executar o projeto
