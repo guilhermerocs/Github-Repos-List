@@ -7,6 +7,7 @@ import br.com.guilherme.githubreposlist.domain.model.entity.Owner
 import br.com.guilherme.githubreposlist.domain.repository.GitReposRepository
 import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCase
 import br.com.guilherme.githubreposlist.domain.usecase.FetchReposUseCaseI
+import br.com.guilherme.githubreposlist.test_utils.generateReposList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -120,16 +121,6 @@ class GitRepositoriesViewModelTest {
     }
 
 
-    private fun generateReposList(): List<GitRepository> {
-        return listOf(
-            GitRepository(
-                1,
-                "",
-                "",
-                Owner("", 1, ""),
-                ""
-            )
-        )
-    }
+
 
 }
