@@ -6,24 +6,20 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.guilherme.githubreposlist.R
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.databinding.FragmentGitReposBinding
-import br.com.guilherme.githubreposlist.di.DaggerComponent
 import br.com.guilherme.githubreposlist.presentation.viewmodel.GitRepositoriesViewModel
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GitReposFragment : Fragment(R.layout.fragment_git_repos),
     SearchView.OnQueryTextListener,
     SearchView.OnCloseListener {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModelGit: GitRepositoriesViewModel
+    private val viewModelGit by viewModel<GitRepositoriesViewModel>()
 
     private var _binding: FragmentGitReposBinding? = null
     private val binding get() = _binding!!
@@ -48,7 +44,6 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        DaggerComponent.create().inject(this)
         setUpRecycler()
         initViewModel()
         observeViewModel()
@@ -76,8 +71,6 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
     }
 
     private fun initViewModel() {
-        viewModelGit =
-            ViewModelProvider(this, viewModelFactory)[GitRepositoriesViewModel::class.java]
         viewModelGit.fetchRepos()
     }
 

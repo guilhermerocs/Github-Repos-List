@@ -10,12 +10,9 @@ import br.com.guilherme.githubreposlist.R
 import br.com.guilherme.githubreposlist.databinding.FragmentGitRepoDetailBinding
 import br.com.guilherme.githubreposlist.domain.model.entity.GitRepository
 import br.com.guilherme.githubreposlist.util.extensions.loadImage
-import javax.inject.Inject
 
 class GitRepoDetailFragment : Fragment(R.layout.fragment_git_repo_detail) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private var _binding: FragmentGitRepoDetailBinding? = null
     private val binding get() = _binding!!

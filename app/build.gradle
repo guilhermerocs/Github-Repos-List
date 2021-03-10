@@ -75,11 +75,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
 
-    //DAGGER
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    //KOIN
+    implementation 'org.koin:koin-android:2.0.1'
+    implementation 'org.koin:koin-androidx-scope:2.0.1'
+    implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
