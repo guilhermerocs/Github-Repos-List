@@ -22,6 +22,7 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
     private val viewModelGit by viewModel<GitRepositoriesViewModel>()
 
     private var _binding: FragmentGitReposBinding? = null
+
     private val binding get() = _binding!!
 
     private var reposAdapter: GitReposAdapter? = null
@@ -142,6 +143,7 @@ class GitReposFragment : Fragment(R.layout.fragment_git_repos),
     }
 
     private fun resetAdapter() {
+
         reposAdapter?.addAll(reposGeneral as ArrayList<GitRepository>)
     }
 

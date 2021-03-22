@@ -1,6 +1,6 @@
 package br.com.guilherme.githubreposlist.data.repositories
 
-import br.com.guilherme.githubreposlist.data.ApiGithubInterface
+import br.com.guilherme.githubreposlist.data.http.ApiGithubInterface
 import br.com.guilherme.githubreposlist.data.source.remote.GitRepositoriesRemote
 import br.com.guilherme.githubreposlist.test_utils.generateReposList
 import kotlinx.coroutines.ExperimentalCoroutinesApi

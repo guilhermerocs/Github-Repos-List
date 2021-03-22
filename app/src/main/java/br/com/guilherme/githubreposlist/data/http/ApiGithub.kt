@@ -1,4 +1,4 @@
-package br.com.guilherme.githubreposlist.data
+package br.com.guilherme.githubreposlist.data.http
 
 import br.com.guilherme.githubreposlist.BuildConfig
 import com.squareup.moshi.Moshi
