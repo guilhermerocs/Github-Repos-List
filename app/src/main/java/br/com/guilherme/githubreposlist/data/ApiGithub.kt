@@ -25,7 +25,7 @@ class ApiGithub {
             .build()
 
 
-        var apiService = connectionRetrofit().create(ApiGithubInterface::class.java)
+        var apiService: ApiGithubInterface = connectionRetrofit().create(ApiGithubInterface::class.java)
 
         private fun connectionRetrofit(): Retrofit {
             return Retrofit.Builder()
